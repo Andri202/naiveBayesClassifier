@@ -14,6 +14,24 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
  
     <link href="https://getbootstrap.com/docs/3.4/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+
+    <style>
+        .pagination-page-info {
+            padding: .6em;
+            padding-left: 0;
+            width: 40em;
+            margin: .5em;
+            margin-left: 0;
+            font-size: 12px;
+        }
+        .pagination-page-info b {
+            color: black;
+            background: #6aa6ed;
+            padding-left: 2px;
+            padding: .1em .25em;
+            font-size: 150%;
+        }
+        </style>
  
  
 </head>
@@ -30,7 +48,7 @@
 		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 		    <ul class="navbar-nav my-2 my-lg-0">
 		      <li class="nav-item active">
-		        <a class="nav-link" href="#">Spam Detection<span class="sr-only">(current)</span></a>
+		        <a class="nav-link" href="/">Spam Detection<span class="sr-only">(current)</span></a>
 		      </li>
 		      <li class="nav-item">
 		        <a class="nav-link" href="dataset">Dataset</a>
@@ -41,41 +59,34 @@
 
 		 <div class="jumbotron">
             <div class="col-lg-12">
-	                <form method="POST" action="">
-				    <center>
-				    <H1>Enter your text </H1> <br>
-				    SMS :
-				    <textarea rows="4" cols="50" name= "text_sms"></textarea>
-				    <input type = "submit">
-				    </center>
-				</form>
-			</div>
-			<div class="col-lg-12">
-                Result : <h1>{{ result }}</h1>
+	           
             </div>
         </div>
  
         <div class="row marketing">
-            <div class="col-lg-6">
-                <h4>Bucket List</h4>
-                <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
- 
-                <h4>Bucket List</h4>
-                <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
- 
-                <h4>Bucket List</h4>
-                <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-            </div>
- 
-            <div class="col-lg-6">
-                <h4>Bucket List</h4>
-                <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
- 
-                <h4>Bucket List</h4>
-                <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
- 
-                <h4>Bucket List</h4>
-                <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+            <div class="col-lg-12">
+                {{ pagination.links }}
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Value</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for data in data %}
+                        <tr>
+                          <td>{{ loop.index + (page - 1) * per_page }}</td>
+                          <td>{{ data[1] }}</td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                  {{ pagination.links }}
+                </div>
+
             </div>
         </div>
  

@@ -43,7 +43,7 @@
             <div class="col-lg-12">
 	                <form method="POST" action="">
 				    <center>
-				    <H1>Enter your text </H1> <br>
+				    <H3>Enter your text </H3> <br>
 				    SMS :
 				    <textarea rows="4" cols="50" name= "text_sms"></textarea>
 				    <input type = "submit">
