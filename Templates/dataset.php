@@ -37,7 +37,13 @@
 </head>
  
 <body>
- 
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <script type="text/javascript">
+                alert({{messages}});
+        </script>
+      {% endif %}
+    {% endwith %}
     <div class="container">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
 		  <a class="navbar-brand " href="#"><b>Spam App</b></a>
@@ -47,45 +53,57 @@
 
 		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 		    <ul class="navbar-nav my-2 my-lg-0">
-		      <li class="nav-item active">
-		        <a class="nav-link" href="/">Spam Detection<span class="sr-only">(current)</span></a>
+		      <li class="nav-item ">
+		        <a class="nav-link" href="/">Spam Detection</a>
 		      </li>
-		      <li class="nav-item">
+		      <li class="nav-item active">
 		        <a class="nav-link" href="dataset">Dataset</a>
 		      </li>
 		    </ul>
 		  </div>
 		</nav>
-
-		 <div class="jumbotron">
-            <div class="col-lg-12">
-	           
-            </div>
-        </div>
  
         <div class="row marketing">
             <div class="col-lg-12">
-                {{ pagination.links }}
-                  <div class="table-responsive">
-                    <table class="table table-hover">
-                      <thead>
-                        <tr>
-                          <th>#</th>
-                          <th>Value</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {% for data in data %}
-                        <tr>
-                          <td>{{ loop.index + (page - 1) * per_page }}</td>
-                          <td>{{ data[1] }}</td>
-                        </tr>
-                        {% endfor %}
-                      </tbody>
-                    </table>
-                  </div>
-                  {{ pagination.links }}
-                </div>
+                {% if data|length %}
+                    <div style="padding-bottom: 20px">
+                        <a href="insert" class="btn btn-success" role="button">Tambah data</a>
+                    </div>
+                    {{pagination.links }}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                          <thead>
+                            <tr style="text-align: center;">
+                                <th>No</th>
+                                <th>Text</th>
+                                <th>Label</th>
+                                <th>#</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {% for data in data %}
+                                <tr>
+                                    <td>{{ loop.index + (page - 1) * per_page }}</td>
+                                    <td>{{ data[1] }}</td>
+                                    <td>
+                                        {% if data[2]  == 1 %}
+                                            Spam
+                                        {% else %}
+                                            Ham
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <a href="delete/{{ data[0] }}" class="btn btn-danger" role="button">Delete</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                          </tbody>
+                        </table>
+                    </div>
+                    {{ pagination.links }}
+                {% else %}
+                    <h1>Null Dataset</h1>
+                {% endif %}
 
             </div>
         </div>

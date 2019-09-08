@@ -17,9 +17,21 @@
  
  
 </head>
- 
+ <style type="text/css">
+     tr, td{
+        height: 40px;
+     }
+     .alignTop {
+        vertical-align: top;
+     }
+     .widthTbl{
+        width: 50px;
+        text-align: center;
+     }
+ </style>
+
+
 <body>
- 
     <div class="container">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
 		  <a class="navbar-brand " href="#"><b>Spam App</b></a>
@@ -40,51 +52,29 @@
 		</nav>
 
 		 <div class="jumbotron">
-            <div class="col-lg-12">
-	                <form method="POST" action="">
-				    <center>
-				    <H3>Enter your sms text </H3> <br>
-				    <textarea rows="4" cols="50" name= "text_sms"></textarea><br>
-				    <input type = "submit">
-				    </center>
+            <div class="col-lg-12" style="margin-left: 13%;text-align: left;">
+                <form method="POST" action="">
+                    <table>
+                        <tr>
+                            <td class="alignTop">Text SMS</td><td class="alignTop widthTbl">:</td><td><textarea name="text_sms" rows="4" cols="40"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>Label</td><td class="alignTop widthTbl">:</td>
+                            <td><select name="label" style="width: 100%">
+                                    <option value="1">Spam</option>   
+                                    <option value="0">Ham</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="text-align: right;"><input type = "submit"></td>
+                        </tr>
+                    </table>  
 				</form>
 			</div>
-			<div class="col-lg-12" style="margin-top: 50px">
-                Result : 
-                <h1>
-                	{% if result is defined %}
-	                	{% if result[1]  == "1" %}
-	                		Spam
-	                	{% else %}
-	                		Ham
-	                	{% endif %}
-	                {% endif %}
-                </h1>
-            </div>
         </div>
  
         <div class="row marketing">
-            <div class="col-lg-6">
-                <h4>Bucket List</h4>
-                <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
- 
-                <h4>Bucket List</h4>
-                <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
- 
-                <h4>Bucket List</h4>
-                <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-            </div>
- 
-            <div class="col-lg-6">
-                <h4>Bucket List</h4>
-                <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
- 
-                <h4>Bucket List</h4>
-                <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
- 
-                <h4>Bucket List</h4>
-                <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-            </div>
         </div>
  
         <footer class="footer">
